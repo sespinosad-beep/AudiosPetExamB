@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAPI PetExam B – Audios</title>
+  <meta name="description" content="Pistas de audio para alumnos de CAPI PetExam B. Accede a los audios de las clases que no pudiste asistir." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --red:        #e63946;
+      --red-pastel: #f9c5c9;
+      --blue:       #1d3557;
+      --blue-mid:   #457b9d;
+      --blue-pastel:#c8dff0;
+      --white:      #ffffff;
+      --off-white:  #f8f9fb;
+      --grey-light: #eef1f5;
+      --grey-text:  #6b7280;
+      --radius:     14px;
+      --shadow:     0 4px 20px rgba(29, 53, 87, 0.10);
+      --shadow-hover: 0 8px 32px rgba(29, 53, 87, 0.18);
+      --transition: 0.25s ease;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--off-white);
+      color: var(--blue);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--white);
+      border-bottom: 3px solid var(--red-pastel);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(29, 53, 87, 0.08);
+    }
+
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      height: 72px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+    }
+
+    h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--blue);
+    }
+
+    h1 span.accent {
+      color: var(--red);
+    }
+
+    .header-sub {
+      font-size: 0.88rem;
+      color: var(--grey-text);
+      font-weight: 400;
+    }
+
+    /* ── Accent bar ── */
+    .accent-bar {
+      height: 5px;
+      background: linear-gradient(90deg, var(--red) 0%, var(--red-pastel) 40%, var(--blue-pastel) 70%, var(--blue-mid) 100%);
+      width: 100%;
+    }
+
+    /* ── Main content ── */
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 36px 20px 60px;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--blue-pastel);
+    }
+
+    /* ── Notice banner ── */
+    .notice {
+      background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+      border-left: 4px solid var(--red);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 36px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--blue);
+    }
+
+    .notice-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Audio group ── */
+    .audio-group {
+      margin-bottom: 40px;
+    }
+
+    /* ── Audio card ── */
+    .audio-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      transition: box-shadow var(--transition), transform var(--transition);
+      border: 1.5px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .audio-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--red);
+      border-radius: var(--radius) 0 0 var(--radius);
+      transition: background var(--transition);
+    }
+
+    .audio-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+      border-color: var(--blue-pastel);
+    }
+
+    .audio-card:hover::before {
+      background: var(--blue-mid);
+    }
+
+    .audio-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .audio-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    .audio-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--blue-pastel);
+      color: var(--blue-mid);
+      letter-spacing: 0.5px;
+    }
+
+    .audio-badge.task {
+      background: var(--red-pastel);
+      color: var(--red);
+    }
+
+    .audio-desc {
+      font-size: 0.82rem;
+      color: var(--grey-text);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    audio {
+      width: 100%;
+      height: 36px;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    /* Style native audio a bit */
+    audio::-webkit-media-controls-panel {
+      background-color: var(--grey-light);
+    }
+
+    /* ── Empty state ── */
+    .empty-state {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--grey-text);
+    }
+
+    .empty-state .emoji {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+
+    .empty-state p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ── Upload info ── */
+    .upload-tip {
+      background: var(--blue-pastel);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      margin-top: 12px;
+      font-size: 0.84rem;
+      color: var(--blue);
+      line-height: 1.6;
+    }
+
+    .upload-tip strong {
+      font-family: 'Inter', sans-serif;
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.88rem;
+    }
+
+    code {
+      background: var(--white);
+      border-radius: 5px;
+      padding: 2px 7px;
+      font-size: 0.82rem;
+      color: var(--red);
+      font-family: 'Courier New', monospace;
+      border: 1px solid #dde4ef;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 28px 16px;
+      font-size: 0.78rem;
+      color: var(--grey-text);
+      border-top: 1px solid var(--grey-light);
+      background: var(--white);
+    }
+
+    footer span {
+      color: var(--red);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      header { padding: 20px 16px 16px; }
+      .logo { height: 54px; }
+      .audio-card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="accent-bar"></div>
+
+  <header>
+    <div class="header-inner">
+      <!-- 
+        🖼️ LOGO: Coloca tu archivo de logo en la misma carpeta que este index.html
+        y asegúrate de que se llame "capi-logo.png" (o cambia el src aquí abajo).
+        Si el logo no carga, se mostrará el texto alternativo.
+      -->
+      <img src="capi-logo.png" alt="CAPI Logo" class="logo" onerror="this.style.display='none'" />
+      <h1>CAPI PetExam B &nbsp;<span class="accent">Audios</span></h1>
+      <p class="header-sub">Recursos de audio para alumnos · Recupera lo que te perdiste</p>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Notice -->
+    <div class="notice">
+      <span class="notice-icon">📢</span>
+      <div>
+        Aquí encontrarás las <strong>pistas de audio</strong> de las sesiones a las que no pudiste asistir. 
+        Escúchalas con atención y practica antes de la próxima clase. ¡Cualquier duda, consúltame!
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  BLOQUE DE AUDIOS — UNIDAD 1              -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="audio-group">
+      <p class="section-label">Unidad 1</p>
+
+      <div class="audio-card">
+        <div class="audio-card-header">
+          <span class="audio-title">Listening 1 – Introduction</span>
+          <span class="audio-badge">B1</span>
+        </div>
+        <p class="audio-desc">Diálogo introductorio. Escucha y toma nota de las palabras clave.</p>
+        <!-- 🎵 Cambia "audios/u1-listening1.mp3" por la ruta real de tu archivo -->
+        <audio controls preload="none">
+          <source src="audios/u1-listening1.mp3" type="audio/mpeg" />
+          Tu navegador no soporta el elemento de audio.
+        </audio>
+      </div>
+
+      <div class="audio-card">
+        <div class="audio-card-header">
+          <span class="audio-title">Listening 2 – Conversation</span>
+          <span class="audio-badge task">Tarea</span>
+        </div>
+        <p class="audio-desc">Conversación formal. Presta atención a la entonación y el vocabulario de examen.</p>
+        <audio controls preload="none">
+          <source src="audios/u1-listening2.mp3" type="audio/mpeg" />
+          Tu navegador no soporta el elemento de audio.
+        </audio>
+      </div>
+
+    </div><!-- /audio-group -->
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  BLOQUE DE AUDIOS — UNIDAD 2              -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="audio-group">
+      <p class="section-label">Unidad 2</p>
+
+      <div class="audio-card">
+        <div class="audio-card-header">
+          <span class="audio-title">Listening 3 – Monologue</span>
+          <span class="audio-badge">B1+</span>
+        </div>
+        <p class="audio-desc">Monólogo en inglés. Identifica las ideas principales y practica la comprensión global.</p>
+        <audio controls preload="none">
+          <source src="audios/u2-listening3.mp3" type="audio/mpeg" />
+          Tu navegador no soporta el elemento de audio.
+        </audio>
+      </div>
+
+      <div class="audio-card">
+        <div class="audio-card-header">
+          <span class="audio-title">Listening 4 – News Report</span>
+          <span class="audio-badge task">Tarea</span>
+        </div>
+        <p class="audio-desc">Fragmento de un noticiero en inglés. Responde las preguntas de comprensión.</p>
+        <audio controls preload="none">
+          <source src="audios/u2-listening4.mp3" type="audio/mpeg" />
+          Tu navegador no soporta el elemento de audio.
+        </audio>
+      </div>
+
+    </div><!-- /audio-group -->
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  CÓMO AÑADIR MÁS AUDIOS (para el profesor)-->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="upload-tip">
+      <strong>📁 ¿Cómo añadir más audios?</strong>
+      1. Sube tus archivos <code>.mp3</code> a la carpeta <code>audios/</code> del repositorio.<br/>
+      2. Copia uno de los bloques <code>&lt;div class="audio-card"&gt;…&lt;/div&gt;</code> de arriba.<br/>
+      3. Cambia el título, la descripción y la ruta <code>src</code> del elemento <code>&lt;audio&gt;</code>.<br/>
+      4. Para agrupar por unidad, copia también el bloque <code>&lt;div class="audio-group"&gt;</code> completo.
+    </div>
+
+  </main>
+
+  <footer>
+    <p>CAPI PetExam B &nbsp;·&nbsp; Recursos para alumnos &nbsp;·&nbsp; Hecho con <span>♥</span> para tu aprendizaje</p>
+  </footer>
+
+</body>
+</html>
